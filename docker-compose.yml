@@ -10,6 +10,8 @@ services:
     depends_on:
       - wordpress1
       - wordpress2
+    networks:
+      - cangrownet
 
   wordpress1:
     image: wordpress:latest
@@ -18,8 +20,8 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-    ports:
-      - "8001:80"
+    networks:
+      - cangrownet
     depends_on:
       - mariadb
 
@@ -30,20 +32,25 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-    ports:
-      - "8002:80"
+    networks:
+      - cangrownet
     depends_on:
       - mariadb
 
   mariadb:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: rootdb
+      MYSQL_ROOT_PASSWORD: example_root_password
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     volumes:
       - mariadb_data:/var/lib/mysql
+    networks:
+      - cangrownet
+
+networks:
+  cangrownet:
 
 volumes:
   mariadb_data:
