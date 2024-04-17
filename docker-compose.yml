@@ -24,6 +24,8 @@ services:
       - cangrownet
     depends_on:
       - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
 
   wordpress2:
     image: wordpress:latest
@@ -36,6 +38,8 @@ services:
       - cangrownet
     depends_on:
       - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
 
   mariadb:
     image: mariadb:latest
@@ -54,4 +58,4 @@ networks:
 
 volumes:
   mariadb_data:
-
+  wordpress_data:
