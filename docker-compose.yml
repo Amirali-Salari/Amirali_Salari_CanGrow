@@ -8,7 +8,6 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - wordpress1
       - wordpress2
     networks:
       - cangrownet
@@ -20,7 +19,7 @@ services:
     networks:
       - cangrownet
     depends_on:
-      - mariadb
+      - mariadb_master
     volumes:
       - wordpress_data:/var/www/html
 
@@ -31,7 +30,7 @@ services:
     networks:
       - cangrownet
     depends_on:
-      - mariadb
+      - mariadb_master
     volumes:
       - wordpress_data:/var/www/html
 
@@ -52,6 +51,8 @@ services:
       - mariadb_replica_data:/var/lib/mysql
     networks:
       - cangrownet
+    depends_on:
+      - mariadb_master
 
 networks:
   cangrownet:
