@@ -15,11 +15,8 @@ services:
 
   wordpress1:
     image: wordpress:latest
-    environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+    env_file:
+      - ./.env
     networks:
       - cangrownet
     depends_on:
@@ -29,11 +26,8 @@ services:
 
   wordpress2:
     image: wordpress:latest
-    environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+    env_file:
+      - ./.env
     networks:
       - cangrownet
     depends_on:
@@ -43,11 +37,8 @@ services:
 
   mariadb:
     image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: example_root_password
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+    env_file:
+      - ./.env
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
