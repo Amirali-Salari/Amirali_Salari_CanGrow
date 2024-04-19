@@ -51,6 +51,9 @@ services:
       - ./.env
     volumes:
       - mariadb_replica_data:/var/lib/mysql
+      - /opt/Amirali_Salari_CanGrow/masterdb:/opt/masterdb
+      - /opt/Amirali_Salari_CanGrow/replicadb:/opt/replicadb
+      - /opt/Amirali_Salari_CanGrow/replicadb/my.cnf:/etc/mysql/my.cnf
     networks:
       - cangrownet
     depends_on:
