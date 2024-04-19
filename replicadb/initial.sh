@@ -13,4 +13,6 @@ mysql -u root -p'secret_root_password' -e"CHANGE MASTER TO
   MASTER_PORT=3306,
   MASTER_LOG_FILE='$(cat /opt/masterdb/file_name)',
   MASTER_LOG_POS=$(cat /opt/masterdb/file_position),
-  MASTER_CONNECT_RETRY=10;"
+  MASTER_CONNECT_RETRY=10;
+  START SLAVE;
+  SHOW SLAVE STATUS \G"
