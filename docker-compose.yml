@@ -35,12 +35,21 @@ services:
     volumes:
       - wordpress_data:/var/www/html
 
-  mariadb:
+  mariadb_master:
     image: mariadb:latest
     env_file:
       - ./.env
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - mariadb_master_data:/var/lib/mysql
+    networks:
+      - cangrownet
+
+  mariadb_replica:
+    image: mariadb:latest
+    env_file:
+      - ./.env
+    volumes:
+      - mariadb_replica_data:/var/lib/mysql
     networks:
       - cangrownet
 
@@ -48,5 +57,6 @@ networks:
   cangrownet:
 
 volumes:
-  mariadb_data:
+  mariadb_master_data:
+  mariadb_replica_data:
   wordpress_data:
