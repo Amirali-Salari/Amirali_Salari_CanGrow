@@ -40,8 +40,9 @@ services:
       - ./.env
     volumes:
       - mariadb_master_data:/var/lib/mysql
-      - /opt/Amirali_Salari_CanGrow/masterdb:/opt/masterdb
-      - /opt/Amirali_Salari_CanGrow/masterdb/my.cnf:/etc/mysql/my.cnf
+      - ./masterdb:/opt/masterdb
+      - ./masterdb/my.cnf:/etc/mysql/my.cnf
+      - ./proxysql:/opt/proxysql
     networks:
       - cangrownet
 
@@ -51,14 +52,24 @@ services:
       - ./.env
     volumes:
       - mariadb_replica_data:/var/lib/mysql
-      - /opt/Amirali_Salari_CanGrow/masterdb:/opt/masterdb
-      - /opt/Amirali_Salari_CanGrow/replicadb:/opt/replicadb
-      - /opt/Amirali_Salari_CanGrow/replicadb/my.cnf:/etc/mysql/my.cnf
+      - ./masterdb:/opt/masterdb
+      - ./replicadb:/opt/replicadb
+      - ./replicadb/my.cnf:/etc/mysql/my.cnf
     networks:
       - cangrownet
     depends_on:
       - mariadb_master
 
+  proxysql:
+    image: proxysql/proxysql
+    restart: always
+    volumes:
+      - ./proxysql/proxysql.cnf:/etc/proxysql.cnf
+    depends_on:
+      - mariadb_master
+      - mariadb_replica
+    networks:
+      - cangrownet
 networks:
   cangrownet:
 
