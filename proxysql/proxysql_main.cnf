@@ -1,0 +1,61 @@
+datadir="/var/lib/proxysql"
+
+admin_variables=
+{
+    admin_credentials="admin:admin"
+    mysql_ifaces="0.0.0.0:6032"
+}
+
+mysql_variables=
+{
+    monitor_username="admin"
+    monitor_password="admin"
+    default_schema="information_schema"
+    server_version="5.5.30"
+    connect_timeout_server="3000"
+}
+
+mysql_servers =
+(
+    {
+        address = "mariadb_master"
+        port = 3306
+        hostgroup = 0
+        max_connections=100
+    },
+	
+    {
+        address = "mariadb_replica"
+        port = 3306
+        hostgroup = 1
+        max_connections=100
+    }
+)
+
+mysql_users =
+(
+    {
+        username = "database_user"
+        password = "secret_password"
+        default_hostgroup = 0
+    }
+)
+
+mysql_query_rules =
+(
+    {
+        rule_id=1
+        active=1
+        match_pattern="^SELECT .* FOR UPDATE"
+        destination_hostgroup=0
+        apply=1
+    },
+    
+    {
+        rule_id=2
+        active=1
+        match_pattern="^SELECT .*"
+        destination_hostgroup=1
+        apply=1
+    }
+)
