@@ -64,7 +64,6 @@ services:
     image: proxysql/proxysql
     restart: always
     volumes:
-      - ./proxysql/proxysql.cnf:/etc/proxysql.cnf
       - ./proxysql:/opt/proxysql
     depends_on:
       - mariadb_master
