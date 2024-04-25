@@ -10,5 +10,7 @@ mysql -u root -p'secret_root_password' -e"CREATE USER 'replication_user'@'%' IDE
 GRANT REPLICATION SLAVE ON *.* TO 'replication_user'@'%';
 SHOW MASTER STATUS;" > /opt/masterdb/master_status
 
+mysql -u root -p'secret_root_password' -e"set global read_only = 0;"
+
 cat /opt/masterdb/master_status | tail -n 1 | awk '{print $1}' > /opt/masterdb/file_name
 cat /opt/masterdb/master_status | tail -n 1 | awk '{print $2}' > /opt/masterdb/file_position

@@ -16,3 +16,5 @@ mysql -u root -p'secret_root_password' -e"CHANGE MASTER TO
   MASTER_CONNECT_RETRY=10;
   START SLAVE;
   SHOW SLAVE STATUS \G"
+
+mysql -u root -p'secret_root_password' -e"set global read_only = 1;"
