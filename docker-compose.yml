@@ -73,6 +73,10 @@ services:
 
 networks:
   cangrownet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/28
 
 volumes:
   mariadb_master_data:
