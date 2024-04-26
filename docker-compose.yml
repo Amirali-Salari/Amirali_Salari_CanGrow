@@ -42,7 +42,6 @@ services:
       - mariadb_master_data:/var/lib/mysql
       - ./masterdb:/opt/masterdb
       - ./masterdb/my.cnf:/etc/mysql/my.cnf
-      - ./proxysql:/opt/proxysql
     networks:
       - cangrownet
 
