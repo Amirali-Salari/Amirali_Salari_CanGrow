@@ -30,7 +30,7 @@ docker compose version
 # Run docker-compose.yml file.
 sudo docker compose up -d
 
-sleep 30
+sleep 10
 
 # Executing scripts required to enable Replication in database containers.
 docker exec -i amirali_salari_cangrow-mariadb_master-1 /bin/bash < ./masterdb/initial.sh
