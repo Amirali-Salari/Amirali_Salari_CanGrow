@@ -19,7 +19,7 @@ services:
     networks:
       - cangrownet
     depends_on:
-      - mariadb_master
+      - proxysql
     volumes:
       - wordpress_data:/var/www/html
 
@@ -30,7 +30,7 @@ services:
     networks:
       - cangrownet
     depends_on:
-      - mariadb_master
+      - proxysql
     volumes:
       - wordpress_data:/var/www/html
 
