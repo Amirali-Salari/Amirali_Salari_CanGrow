@@ -1,33 +1,35 @@
 name: DEPLOY
+
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: rsync deployments
-      uses: burnett01/rsync-deployments@7.0.1
-      with:
-        switches: -avzr --delete
-        path: ./
-        remote_path: /opt/Amirali_Salari_CanGrow/
-        remote_host: 188.121.111.198
-        remote_port: 22
-        remote_user: root
-        remote_key: ${{ secrets.remote_key }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avzr --delete
+          path: ./
+          remote_path: /opt/Amirali_Salari_CanGrow/
+          remote_host: 188.121.111.198
+          remote_port: 22
+          remote_user: root
+          remote_key: ${{ secrets.remote_key }}
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using ssh key
-    uses: appleboy/ssh-action@v1.0.3
-    with:
-      host: ${{ secrets.HOST }}
-      username: ${{ secrets.USERNAME }}
-      key: ${{ secrets.KEY }}
-      port: ${{ secrets.PORT }}
-      script: whoami
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: whoami
