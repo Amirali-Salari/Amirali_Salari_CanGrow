@@ -32,4 +32,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: whoami
+          script: ls -l /opt/Amirali_Salari_CanGrow/
