@@ -6,7 +6,7 @@ apt update
 apt install -y mysql-client
 
 # Execute SQL commands.
-mysql -u root -p'$MYSQL_ROOT_PASSWORD' -e"CHANGE MASTER TO
+mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e"CHANGE MASTER TO
   MASTER_HOST='mariadb_master',
   MASTER_USER='$REPLICATION_USER',
   MASTER_PASSWORD='$REPLICATION_PASSWORD',
@@ -17,4 +17,4 @@ mysql -u root -p'$MYSQL_ROOT_PASSWORD' -e"CHANGE MASTER TO
   START SLAVE;
   SHOW SLAVE STATUS \G"
 
-mysql -u root -p'$MYSQL_ROOT_PASSWORD' -e"set global read_only = 1;"
+mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e"set global read_only = 1;"
