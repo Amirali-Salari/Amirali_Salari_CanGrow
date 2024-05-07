@@ -67,6 +67,8 @@ services:
   proxysql:
     image: proxysql/proxysql
     container_name: proxysql
+    env_file:
+      - ./.env
     restart: always
     volumes:
       - ./proxysql:/opt/proxysql

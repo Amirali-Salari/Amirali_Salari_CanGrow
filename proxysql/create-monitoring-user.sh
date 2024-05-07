@@ -2,5 +2,5 @@
 set -e
 
 # Execute SQL commands.
-mysql -u root -p'secret_root_password' -e"CREATE USER 'monitor'@'%' IDENTIFIED BY 'monitor';
-GRANT USAGE, REPLICATION CLIENT ON *.* TO 'monitor'@'%';"
+mysql -u root -p'$MYSQL_ROOT_PASSWORD' -e"CREATE USER '$MONITOR_USER'@'%' IDENTIFIED BY '$MONITOR_PASSWORD';
+GRANT USAGE, REPLICATION CLIENT ON *.* TO '$MONITOR_USER'@'%';"
