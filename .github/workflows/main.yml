@@ -38,6 +38,7 @@ jobs:
             docker compose down
             docker volume rm $(docker volume ls -q)
             docker compose up -d
+            sleep 30
             docker exec -i amirali_salari_cangrow-mariadb_master-1 /bin/bash < ./masterdb/initial.sh
             docker exec -i amirali_salari_cangrow-mariadb_replica-1 /bin/bash < ./replicadb/initial.sh
             docker exec -i amirali_salari_cangrow-mariadb_master-1 /bin/bash < ./proxysql/create-monitoring-user.sh
