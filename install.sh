@@ -33,12 +33,12 @@ sudo docker compose up -d
 sleep 30
 
 # Executing scripts required to enable Replication in database containers.
-docker exec -i amirali_salari_cangrow-mariadb_master-1 /bin/bash < ./masterdb/initial.sh
-docker exec -i amirali_salari_cangrow-mariadb_replica-1 /bin/bash < ./replicadb/initial.sh
+docker exec -i mariadb_master /bin/bash < ./masterdb/initial.sh
+docker exec -i mariadb_replica /bin/bash < ./replicadb/initial.sh
 
 # Run the scripts needed to configure ProxySQL.
-docker exec -i amirali_salari_cangrow-mariadb_master-1 /bin/bash < ./proxysql/create-monitoring-user.sh
-docker exec -i amirali_salari_cangrow-proxysql-1 /bin/bash < ./proxysql/initial.sh
+docker exec -i mariadb_master /bin/bash < ./proxysql/create-monitoring-user.sh
+docker exec -i proxysql /bin/bash < ./proxysql/initial.sh
 
 echo "----------------------------------------------------------------
 everything is ready!

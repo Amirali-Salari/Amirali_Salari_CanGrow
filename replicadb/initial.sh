@@ -7,7 +7,7 @@ apt install -y mysql-client
 
 # Execute SQL commands.
 mysql -u root -p'secret_root_password' -e"CHANGE MASTER TO
-  MASTER_HOST='amirali_salari_cangrow-mariadb_master-1',
+  MASTER_HOST='mariadb_master',
   MASTER_USER='replication_user',
   MASTER_PASSWORD='bigs3cret',
   MASTER_PORT=3306,

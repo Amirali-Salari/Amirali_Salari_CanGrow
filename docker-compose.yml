@@ -3,6 +3,7 @@ version: '3.8'
 services:
   nginx:
     image: nginx:latest
+    container_name: nginx
     ports:
       - "80:80"
     volumes:
@@ -14,6 +15,7 @@ services:
 
   wordpress1:
     image: wordpress:latest
+    container_name: wordpress1
     env_file:
       - ./.env
     networks:
@@ -25,6 +27,7 @@ services:
 
   wordpress2:
     image: wordpress:latest
+    container_name: wordpress2
     env_file:
       - ./.env
     networks:
@@ -36,6 +39,7 @@ services:
 
   mariadb_master:
     image: mariadb:latest
+    container_name: mariadb_master
     env_file:
       - ./.env
     volumes:
@@ -47,6 +51,7 @@ services:
 
   mariadb_replica:
     image: mariadb:latest
+    container_name: mariadb_replica
     env_file:
       - ./.env
     volumes:
@@ -61,6 +66,7 @@ services:
 
   proxysql:
     image: proxysql/proxysql
+    container_name: proxysql
     restart: always
     volumes:
       - ./proxysql:/opt/proxysql
